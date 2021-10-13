@@ -1,0 +1,60 @@
+@use "sass:color";
+
+.EightBall {
+    $size: 80vmin;
+    perspective: 1500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    figure {
+        width: $size;
+        height: $size;
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background-color: black;
+        position: relative;
+        background-image: radial-gradient(
+            circle at 50% 50%,
+            color.adjust(white, $alpha: -0.6),
+            color.adjust(white, $alpha: -0.9) 40%,
+            color.adjust(white, $alpha: -1)
+        );
+
+        &::before {
+            content: "";
+            width: 80%;
+            height: 80%;
+            position: absolute;
+            $from-color: color.adjust(white, $alpha: -0.75);
+            $to-color: color.adjust($from-color, $alpha: -1);
+            display: block;
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(10px);
+            background-image: radial-gradient(
+                circle at 10% -50%,
+                $from-color, $to-color 60%
+            );
+        }
+    }
+
+    div {
+        $size: $size * 0.5;
+        height: $size;
+        width: $size;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        p {
+            color: white;
+            font-size: 2em;
+            text-align: center;
+            padding: 0.25em;
+        }
+    }
+}
